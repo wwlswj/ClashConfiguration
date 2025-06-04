@@ -379,19 +379,19 @@ function main(config) {
                 icon: region.icon,
                 proxies: [region.name + "节点", region.name + "自动"]
             });
-            // 添加同区域自动组
-            regionGroups.push({
-                ...groupCommonOptions,
-                ...autoGroupCommonOptions,
-                name: region.name + "自动",
-                icon: region.icon,
-                proxies: temp
-            });
             // 添加同区域手动组
             regionGroups.push({
                 ...groupCommonOptions, // 使用代理组通用配置
                 ...selectGroupCommonOptions, // 使用手动组通用配置（会覆盖代理组通用配置中的重复选项）
                 name: region.name + "节点",
+                icon: region.icon,
+                proxies: temp
+            });
+            // 添加同区域自动组
+            regionGroups.push({
+                ...groupCommonOptions,
+                ...autoGroupCommonOptions,
+                name: region.name + "自动",
                 icon: region.icon,
                 proxies: temp
             });
@@ -411,19 +411,19 @@ function main(config) {
             icon: "https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/World_Map.png",
             proxies: ["其它区域节点", "其它区域自动"]
         });
-        // 其它区域自动
-        regionGroups.push({
-            ...groupCommonOptions,
-            ...autoGroupCommonOptions,
-            name: "其它区域自动",
-            icon: "https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/World_Map.png",
-            proxies: tempProxies
-        });
         // 其它区域手动
         regionGroups.push({
             ...groupCommonOptions,
             ...selectGroupCommonOptions,
             name: "其它区域节点",
+            icon: "https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/World_Map.png",
+            proxies: tempProxies
+        });
+        // 其它区域自动
+        regionGroups.push({
+            ...groupCommonOptions,
+            ...autoGroupCommonOptions,
+            name: "其它区域自动",
             icon: "https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/World_Map.png",
             proxies: tempProxies
         });
