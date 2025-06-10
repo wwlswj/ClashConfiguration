@@ -50,6 +50,10 @@ disable-keep-alive: false
 keep-alive-interval: 15
 # 主动保持 TCP 连接的数据包的停歇时间，也就是当一个 TCP 连接空闲多久时 Clash 开始主动发送数据包使其保持连接，单位为秒
 keep-alive-idle: 300
+# 外部控制，通过前后端分离的通用 API 接口 RESTful API 来控制 Clash 内核
+# RESTful API 监听地址（外部控制监听地址）
+external-controller: 0.0.0.0:9090
+
 
 
 
@@ -89,7 +93,6 @@ tls:
       format/pem...
       -----END CERTIFICATE-----
 
-external-controller: 0.0.0.0:9093 # RESTful API 监听地址
 external-controller-tls: 0.0.0.0:9443 # RESTful API HTTPS 监听地址，需要配置 tls 部分配置文件
 # secret: "123456" # `Authorization:Bearer ${secret}`
 
