@@ -1,3 +1,22 @@
+# 全局设置
+allow-lan: true # 允许其他设备通过 Clash 的代理端口访问互联网（作为路由器使用必须打开的选项）。
+bind-address: "*" # 绑定 IP 地址，被 Clash 代理的设备只能通过该地址访问互联网，只在 allow-lan 为 true 时生效，'*' 表示所有地址。
+lan-allowed-ips: # 允许连接到 Clash 的 IP 地址段，仅在 allow-lan 为 true 时生效, 默认值为 0.0.0.0/0 和::/0
+  - 0.0.0.0/0
+  - ::/0
+lan-disallowed-ips: # 禁止连接到 Clash 的 IP 地址段，黑名单优先级高于白名单，默认值为空
+  # - 192.168.0.3/32
+authentication: # 通过 http、https 协议（如浏览器）或 socks 协议连接 Clash 时的用户名和密钥
+  - "username:password"
+  # - "username1:password1"
+skip-auth-prefixes: # 允许跳过安全验证的 IP 段（这些 IP 通过 http(s) 或 socks 协议连接 Clash 时不需要验证用户名和密钥）
+  - 127.0.0.1/8
+  - ::1/128
+
+
+
+
+
 # port: 7890 # HTTP(S) 代理服务器端口
 # socks-port: 7891 # SOCKS5 代理端口
 mixed-port: 10801 # HTTP(S) 和 SOCKS 代理混合端口
@@ -5,19 +24,6 @@ mixed-port: 10801 # HTTP(S) 和 SOCKS 代理混合端口
 
 # Transparent proxy server port for Linux (TProxy TCP and TProxy UDP)
 # tproxy-port: 7893
-
-allow-lan: true # 允许局域网连接
-bind-address: "*" # 绑定 IP 地址，仅作用于 allow-lan 为 true，'*'表示所有地址
-authentication: # http,socks 入口的验证用户名，密码
-  - "username:password"
-skip-auth-prefixes: # 设置跳过验证的 IP 段
-  - 127.0.0.1/8
-  - ::1/128
-lan-allowed-ips: # 允许连接的 IP 地址段，仅作用于 allow-lan 为 true, 默认值为 0.0.0.0/0 和::/0
-  - 0.0.0.0/0
-  - ::/0
-lan-disallowed-ips: # 禁止连接的 IP 地址段，黑名单优先级高于白名单，默认值为空
-  - 192.168.0.3/32
 
 #  find-process-mode has 3 values:always, strict, off
 #  - always, 开启，强制匹配所有进程
