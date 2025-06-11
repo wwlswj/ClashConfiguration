@@ -186,6 +186,116 @@ proxy-groups:
   proxies: [默认代理, <<: *group-names]
   icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/YouTube.png
 
+- name: "AppleTV"
+  type: select
+  proxies: [默认代理, <<: *group-names]
+  icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Apple_TV.png
+
+- name: "苹果服务"
+  type: select
+  proxies: [默认代理, <<: *group-names]
+  icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Apple_rainbow.png
+
+- name: "微软服务"
+  type: select
+  proxies: [默认代理, <<: *group-names]
+  icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Microsoft.png
+
+- name: "谷歌FCM"
+  type: select
+  proxies: [默认代理, <<: *group-names]
+  icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/FCM_Firebase_Cloud_Messaging.png
+
+- name: "谷歌服务"
+  type: select
+  proxies: [默认代理, <<: *group-names]
+  icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Google.png
+
+- name: "TikTok"
+  type: select
+  proxies: [默认代理, <<: *group-names]
+  icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/TikTok.png
+
+- name: "NETFLIX"
+  type: select
+  proxies: [默认代理, <<: *group-names]
+  icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Netflix.png
+
+- name: "Disney"
+  type: select
+  proxies: [默认代理, <<: *group-names]
+  icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Disney.png
+
+- name: "HBO"
+  type: select
+  proxies: [默认代理, <<: *group-names]
+  icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/HBO_MAX.png
+
+- name: "PrimeVideo"
+  type: select
+  proxies: [默认代理, <<: *group-names]
+  icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Prime.png
+
+- name: "Emby"
+  type: select
+  proxies: [默认代理, <<: *group-names]
+  icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Emby.png
+
+- name: "Spotify"
+  type: select
+  proxies: [默认代理, <<: *group-names]
+  icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Spotify.png
+
+- name: "巴哈姆特"
+  type: select
+  proxies: [默认代理, <<: *group-names]
+  icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Bahamut.png
+
+- name: "哔哩哔哩海外版"
+  type: select
+  proxies: [默认代理, <<: *group-names]
+  icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/bilibili.png
+
+- name: "Pixiv"
+  type: select
+  proxies: [默认代理, <<: *group-names]
+  icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Pixiv.png
+
+- name: "Hulu"
+  type: select
+  proxies: [默认代理, <<: *group-names]
+  icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Hulu.png
+
+- name: "Steam"
+  type: select
+  proxies: [默认代理, <<: *group-names]
+  icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Steam.png
+
+- name: "游戏平台"
+  type: select
+  proxies: [默认代理, <<: *group-names]
+  icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Game.png
+
+- name: "国外娱乐"
+  type: select
+  proxies: [默认代理, <<: *group-names]
+  icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Stream.png
+
+- name: "国外电商"
+  type: select
+  proxies: [默认代理, <<: *group-names]
+  icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Amazon.png
+
+- name: "GFW"
+  type: select
+  proxies: [默认代理, <<: *group-names]
+  icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/GFW.png
+
+- name: "漏网之鱼"
+  type: select
+  proxies: [默认代理, <<: *group-names]
+  icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Fish.png
+
 - name: "默认代理"
   type: select
   proxies: [<<: *group-names]
@@ -816,3 +926,83 @@ sniffer:
   # 自动选择流量出口接口，多出口网卡同时连接的设备建议手动指定出口网卡
   # auto-detect-interface: true
 
+
+# 自定义规则源
+rule-providers:
+  Custom_Direct:
+    type: http
+    path: ./rule_provider/Custom_Direct.list
+    url: "https://raw.githubusercontent.com/Aethersailor/Custom_OpenClash_Rules/main/rule/Custom_Direct.list"
+    interval: 28800
+    behavior: classical
+    format: text
+    size-limit: 0
+  Custom_Proxy:
+    type: http
+    path: ./rule_provider/Custom_Proxy.list
+    url: "https://raw.githubusercontent.com/Aethersailor/Custom_OpenClash_Rules/main/rule/Custom_Proxy.list"
+    interval: 28800
+    behavior: classical
+    format: text
+    size-limit: 0
+  Steam_CDN:
+    type: http
+    path: ./rule_provider/Steam_CDN.list
+    url: "https://raw.githubusercontent.com/Aethersailor/Custom_OpenClash_Rules/main/rule/Steam_CDN.list"
+    interval: 28800
+    behavior: classical
+    format: text
+    size-limit: 0
+
+
+# 规则集
+rules:
+  - GEOSITE,private,全球直连
+  - GEOIP,private,全球直连,no-resolve
+  - RULE-SET,Custom_Direct,全球直连
+  - RULE-SET,Custom_Proxy,默认代理
+  - GEOSITE,google-cn,全球直连
+  - GEOSITE,category-games@cn,全球直连
+  - RULE-SET,Steam_CDN,全球直连
+  - GEOSITE,category-game-platforms-download,全球直连
+  - GEOSITE,category-public-tracker,全球直连
+  - GEOSITE,category-scholar-!cn,国外学术
+  - GEOSITE,category-communication,即时通讯
+  - GEOSITE,category-social-media-!cn,社交媒体
+  - GEOSITE,openai,ChatGPT
+  - GEOSITE,bing,Copilot
+  - GEOSITE,category-ai-!cn,国外AI
+  - GEOSITE,github,GitHub
+  - GEOSITE,category-speedtest,测速工具
+  - GEOSITE,youtube,YouTube
+  - GEOSITE,apple-tvplus,AppleTV
+  - GEOSITE,apple,苹果服务
+  - GEOSITE,microsoft,微软服务
+  - GEOSITE,googlefcm,谷歌FCM
+  - GEOSITE,google,谷歌服务
+  - GEOSITE,tiktok,TikTok
+  - GEOSITE,netflix,NETFLIX
+  - GEOSITE,disney,Disney
+  - GEOSITE,hbo,HBO
+  - GEOSITE,primevideo,PrimeVideo
+  - GEOSITE,category-emby,Emby
+  - GEOSITE,spotify,Spotify
+  - GEOSITE,bahamut,巴哈姆特
+  - GEOSITE,bilibili,哔哩哔哩海外版
+  - GEOSITE,bilibili-game,哔哩哔哩海外版
+  - GEOSITE,bilibili2,哔哩哔哩海外版
+  - GEOSITE,pixiv,Pixiv
+  - GEOSITE,hulu,Hulu
+  - GEOSITE,steam,Steam
+  - GEOSITE,category-games,游戏平台
+  - GEOSITE,category-entertainment,国外娱乐
+  - GEOSITE,category-games,国外电商
+  - GEOSITE,gfw,GFW
+  - GEOIP,telegram,即时通讯,no-resolve
+  - GEOIP,twitter,社交媒体,no-resolve
+  - GEOIP,facebook,社交媒体,no-resolve
+  - GEOIP,google,谷歌服务,no-resolve
+  - GEOIP,netflix,NETFLIX,no-resolve
+  - GEOSITE,cn,全球直连
+  - GEOIP,cn,全球直连,no-resolve
+  - MATCH,漏网之鱼
