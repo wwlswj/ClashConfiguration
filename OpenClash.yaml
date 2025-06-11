@@ -143,162 +143,162 @@ group-names: &group-names
 proxy-groups:
 - name: "国外学术"
   type: select
-  proxies: [默认代理, <<: *group-names]
+  proxies: [默认代理, *group-names]
   icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Scholar.png
 
 - name: "即时通讯"
   type: select
-  proxies: [默认代理, <<: *group-names]
+  proxies: [默认代理, *group-names]
   icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Telegram.png
 
 - name: "社交媒体"
   type: select
-  proxies: [默认代理, <<: *group-names]
+  proxies: [默认代理, *group-names]
   icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Twitter.png
 
 - name: "ChatGPT"
   type: select
-  proxies: [默认代理, <<: *group-names]
+  proxies: [默认代理, *group-names]
   icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/ChatGPT.png
 
 - name: "Copilot"
   type: select
-  proxies: [默认代理, <<: *group-names]
+  proxies: [默认代理, *group-names]
   icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Microsoft_Copilot.png
 
 - name: "国外AI"
   type: select
-  proxies: [默认代理, <<: *group-names]
+  proxies: [默认代理, *group-names]
   icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/AI.png
 
 - name: "GitHub"
   type: select
-  proxies: [默认代理, <<: *group-names]
+  proxies: [默认代理, *group-names]
   icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/GitHub.png
 
 - name: "测速工具"
   type: select
-  proxies: [默认代理, <<: *group-names]
+  proxies: [默认代理, *group-names]
   icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/SpeedTest.png
 
 - name: "YouTube"
   type: select
-  proxies: [默认代理, <<: *group-names]
+  proxies: [默认代理, *group-names]
   icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/YouTube.png
 
 - name: "AppleTV"
   type: select
-  proxies: [默认代理, <<: *group-names]
+  proxies: [默认代理, *group-names]
   icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Apple_TV.png
 
 - name: "苹果服务"
   type: select
-  proxies: [默认代理, <<: *group-names]
+  proxies: [默认代理, *group-names]
   icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Apple_rainbow.png
 
 - name: "微软服务"
   type: select
-  proxies: [默认代理, <<: *group-names]
+  proxies: [默认代理, *group-names]
   icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Microsoft.png
 
 - name: "谷歌FCM"
   type: select
-  proxies: [默认代理, <<: *group-names]
+  proxies: [默认代理, *group-names]
   icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/FCM_Firebase_Cloud_Messaging.png
 
 - name: "谷歌服务"
   type: select
-  proxies: [默认代理, <<: *group-names]
+  proxies: [默认代理, *group-names]
   icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Google.png
 
 - name: "TikTok"
   type: select
-  proxies: [默认代理, <<: *group-names]
+  proxies: [默认代理, *group-names]
   icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/TikTok.png
 
 - name: "NETFLIX"
   type: select
-  proxies: [默认代理, <<: *group-names]
+  proxies: [默认代理, *group-names]
   icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Netflix.png
 
 - name: "Disney"
   type: select
-  proxies: [默认代理, <<: *group-names]
+  proxies: [默认代理, *group-names]
   icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Disney.png
 
 - name: "HBO"
   type: select
-  proxies: [默认代理, <<: *group-names]
+  proxies: [默认代理, *group-names]
   icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/HBO_MAX.png
 
 - name: "PrimeVideo"
   type: select
-  proxies: [默认代理, <<: *group-names]
+  proxies: [默认代理, *group-names]
   icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Prime.png
 
 - name: "Emby"
   type: select
-  proxies: [默认代理, <<: *group-names]
+  proxies: [默认代理, *group-names]
   icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Emby.png
 
 - name: "Spotify"
   type: select
-  proxies: [默认代理, <<: *group-names]
+  proxies: [默认代理, *group-names]
   icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Spotify.png
 
 - name: "巴哈姆特"
   type: select
-  proxies: [默认代理, <<: *group-names]
+  proxies: [默认代理, *group-names]
   icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Bahamut.png
 
 - name: "哔哩哔哩海外版"
   type: select
-  proxies: [默认代理, <<: *group-names]
+  proxies: [默认代理, *group-names]
   icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/bilibili.png
 
 - name: "Pixiv"
   type: select
-  proxies: [默认代理, <<: *group-names]
+  proxies: [默认代理, *group-names]
   icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Pixiv.png
 
 - name: "Hulu"
   type: select
-  proxies: [默认代理, <<: *group-names]
+  proxies: [默认代理, *group-names]
   icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Hulu.png
 
 - name: "Steam"
   type: select
-  proxies: [默认代理, <<: *group-names]
+  proxies: [默认代理, *group-names]
   icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Steam.png
 
 - name: "游戏平台"
   type: select
-  proxies: [默认代理, <<: *group-names]
+  proxies: [默认代理, *group-names]
   icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Game.png
 
 - name: "国外娱乐"
   type: select
-  proxies: [默认代理, <<: *group-names]
+  proxies: [默认代理, *group-names]
   icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Stream.png
 
 - name: "国外电商"
   type: select
-  proxies: [默认代理, <<: *group-names]
+  proxies: [默认代理, *group-names]
   icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Amazon.png
 
 - name: "GFW"
   type: select
-  proxies: [默认代理, <<: *group-names]
+  proxies: [默认代理, *group-names]
   icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/GFW.png
 
 - name: "漏网之鱼"
   type: select
-  proxies: [默认代理, <<: *group-names]
+  proxies: [默认代理, *group-names]
   icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Fish.png
 
 - name: "默认代理"
   type: select
-  proxies: [<<: *group-names]
+  proxies: [*group-names]
   icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Flight.png
 
 - name: "自动选择"
@@ -607,13 +607,13 @@ external-controller-cors:
 # 可以为绝对路径，或者 Clash 工作目录的相对路径
 # 访问地址为 http://{{external-controller}}/ui
 # ！！！当 mihomo 等内核作为 Clash 应用的插件使用时，无需设置外部控制的用户界面！！！
-# external-ui: /path/to/ui/folder
+external-ui: ./ui
 # 自定义外部控制的用户界面的名字，非必需选项，若不指定，用户界面更新时则直接更新到 external-ui 路径
 # 以用户界面名称为 xd 为例，设置好后外部控制界面的资源路径会合并为 external-ui/xd，其中 external-ui 为上一步设置的路径
-# external-ui-name: xd
+external-ui-name: xd
 # 外部控制界面资源的下载地址
 # 目前支持下载zip,tgz格式的压缩包
-# external-ui-url: "https://github.com/MetaCubeX/metacubexd/archive/refs/heads/gh-pages.zip"
+external-ui-url: "https://github.com/MetaCubeX/metacubexd/archive/refs/heads/gh-pages.zip"
 # 设置安全证书，目前仅用于外部控制 RESTful API 的 https 协议
 # tls:
   # PEM 格式证书内容，或者证书的路径
@@ -644,11 +644,11 @@ profile:
 # 全局 TLS 指纹，优先级低于 proxy 内的 client-fingerprint
 # 可选： "chrome","firefox","safari","ios","random","none" options.
 # 目前支持开启 TLS 传输的 TCP/grpc/WS/HTTP , 支持协议有 VLESS,Vmess 和 trojan
-# global-client-fingerprint: chrome
+global-client-fingerprint: chrome
 # 自定义外部资源下载时使用的的 UA，默认为 clash.meta
-# global-ua: clash.meta
+global-ua: clash.meta
 # 设置是否启用外部资源下载的 ETag 支持，默认为 true
-# etag-support: true
+etag-support: true
 # 设置是否更改 geoip 使用文件，mmdb 或者 dat，可选 true/false,true为 dat，此项有默认值 false
 geodata-mode: false
 # 设置 geo 文件加载模式
@@ -931,7 +931,7 @@ sniffer:
 rule-providers:
   Custom_Direct:
     type: http
-    path: ./rule_provider/Custom_Direct.list
+    path: ./rule_providers/Custom_Direct.list
     url: "https://raw.githubusercontent.com/Aethersailor/Custom_OpenClash_Rules/main/rule/Custom_Direct.list"
     interval: 28800
     behavior: classical
@@ -939,7 +939,7 @@ rule-providers:
     size-limit: 0
   Custom_Proxy:
     type: http
-    path: ./rule_provider/Custom_Proxy.list
+    path: ./rule_providers/Custom_Proxy.list
     url: "https://raw.githubusercontent.com/Aethersailor/Custom_OpenClash_Rules/main/rule/Custom_Proxy.list"
     interval: 28800
     behavior: classical
@@ -947,7 +947,7 @@ rule-providers:
     size-limit: 0
   Steam_CDN:
     type: http
-    path: ./rule_provider/Steam_CDN.list
+    path: ./rule_providers/Steam_CDN.list
     url: "https://raw.githubusercontent.com/Aethersailor/Custom_OpenClash_Rules/main/rule/Steam_CDN.list"
     interval: 28800
     behavior: classical
