@@ -376,11 +376,12 @@ dns:
 
   # 用于 direct 出口域名解析的 DNS 服务器，如果不填则遵循 nameserver-policy、nameserver 和 fallback 的配置
   # 这里设置的是不经过 Clash 内核的流量向哪个 DNS 查询解析
-  direct-nameserver:
-    - system
+  # 这里不建议设置，因为根据解析流程，如果这里设置了 DNS，分流规则命中的无需代理的流量经 nameserver 解析后还要在这里再次解析
+  # direct-nameserver:
+    # - system
 
   # 这里的设置表示 direct-nameserver 是否遵循 nameserver-policy，默认为不遵守，仅当 direct-nameserver 不为空时生效
-  direct-nameserver-follow-policy: false
+  # direct-nameserver-follow-policy: false
 
   # 后备域名解析服务器筛选，满足条件的将使用 fallback结果或只使用 fallback解析
   # fallback-filter:
