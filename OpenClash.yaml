@@ -13,7 +13,7 @@ proxy-providers:
       interval: 180
       timeout: 5000
       max-failed-times: 5
-      lazy: true
+      lazy: false
     override:
       udp: true
       skip-cert-verify: true
@@ -30,7 +30,7 @@ proxy-providers:
       interval: 180
       timeout: 5000
       max-failed-times: 5
-      lazy: true
+      lazy: false
     override:
       udp: true
       skip-cert-verify: true
@@ -47,482 +47,504 @@ proxy-providers:
       interval: 180
       timeout: 5000
       max-failed-times: 5
-      lazy: true
+      lazy: false
     override:
       udp: true
       skip-cert-verify: true
 
 
-# 添加直连节点
-proxies:
-  - name: 🎯直连
-    type: direct
-
-
-# 策略组设置
-# 区域手动组通用设置
-region-select-options: &region-select-options
-  - type: select
-    use:
-      - provider1
-      - provider2
-      - provider3
-    url: https://cp.cloudflare.com/generate_204
-    interval: 180
-    timeout: 5000
-    max-failed-times: 5
-    lazy: false
-    hidden: false
-    udp: true
-    # 引入所有代理节点和节点集合，但是不包括策略组
-    include-all: true
-    # 引入所有代理节点，不引入节点集合，且不包括策略组
-    # include-all-proxies: true
-    # 引入所有节点集合，但是不包括策略组
-    # include-all-providers: true
-# 区域自动组通用设置
-region-auto-options: &region-auto-options
-  - type: url-test
-    use:
-      - provider1
-      - provider2
-      - provider3
-    url: https://cp.cloudflare.com/generate_204
-    interval: 180
-    tolerance: 50
-    timeout: 5000
-    max-failed-times: 5
-    lazy: false
-    hidden: true
-    udp: true
-    # 引入所有代理节点和节点集合，但是不包括策略组
-    include-all: true
-    # 引入所有代理节点，不引入节点集合，且不包括策略组
-    # include-all-proxies: true
-    # 引入所有节点集合，但是不包括策略组
-    # include-all-providers: true
+# 手动选择区域组通用设置
+so: &so { type: select, hidden: false, include-all: true }
+# 自动选择区域组通用设置
+ao: &ao {type: url-test, hidden: true, include-all: true, tolerance: 50}
+# 故障转移区域组通用设置
+fo: &fo {type: fallback, hidden: true}
 # 策略组名称集，便于创建其它策略组
-group-names: &group-names
-  - 自动选择
-  - 全球直连
-  - 全部节点
-  - 香港故转
-  - 香港节点
-  - 香港自动
-  - 台湾省故转
-  - 台湾省节点
-  - 台湾省自动
-  - 新加坡故转
-  - 新加坡节点
-  - 新加坡自动
-  - 日本故转
-  - 日本节点
-  - 日本自动
-  - 韩国故转
-  - 韩国节点
-  - 韩国自动
-  - 美国故转
-  - 美国节点
-  - 美国自动
-  - 澳大利亚故转
-  - 澳大利亚节点
-  - 澳大利亚自动
-  - 英国故转
-  - 英国节点
-  - 英国自动
-  - 德国故转
-  - 德国节点
-  - 德国自动
-  - 马来西亚故转
-  - 马来西亚节点
-  - 马来西亚自动
-  - 土耳其故转
-  - 土耳其节点
-  - 土耳其自动
+names: &names [
+         默认代理,
+         自动选择,
+         全球直连,
+         全部节点,
+         香港故转,
+         香港自动,
+         香港节点,
+         台湾省故转,
+         台湾省自动,
+         台湾省节点,
+         新加坡故转,
+         新加坡自动,
+         新加坡节点,
+         日本故转,
+         日本自动,
+         日本节点,
+         韩国故转,
+         韩国自动,
+         韩国节点,
+         美国故转,
+         美国自动,
+         美国节点,
+         澳大利亚故转,
+         澳大利亚自动,
+         澳大利亚节点,
+         英国故转,
+         英国自动,
+         英国节点,
+         德国故转,
+         德国自动,
+         德国节点,
+         马来西亚故转,
+         马来西亚自动,
+         马来西亚节点,
+         土耳其故转,
+         土耳其自动,
+         土耳其节点
+]
 # 策略组
 proxy-groups:
-- name: "国外学术"
-  type: select
-  proxies: [默认代理, *group-names]
-  icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Scholar.png
-
-- name: "即时通讯"
-  type: select
-  proxies: [默认代理, *group-names]
-  icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Telegram.png
-
-- name: "社交媒体"
-  type: select
-  proxies: [默认代理, *group-names]
-  icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Twitter.png
-
-- name: "ChatGPT"
-  type: select
-  proxies: [默认代理, *group-names]
-  icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/ChatGPT.png
-
-- name: "Copilot"
-  type: select
-  proxies: [默认代理, *group-names]
-  icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Microsoft_Copilot.png
-
-- name: "国外AI"
-  type: select
-  proxies: [默认代理, *group-names]
-  icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/AI.png
-
-- name: "GitHub"
-  type: select
-  proxies: [默认代理, *group-names]
-  icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/GitHub.png
-
-- name: "测速工具"
-  type: select
-  proxies: [默认代理, *group-names]
-  icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/SpeedTest.png
-
-- name: "YouTube"
-  type: select
-  proxies: [默认代理, *group-names]
-  icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/YouTube.png
-
-- name: "AppleTV"
-  type: select
-  proxies: [默认代理, *group-names]
-  icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Apple_TV.png
-
-- name: "苹果服务"
-  type: select
-  proxies: [默认代理, *group-names]
-  icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Apple_rainbow.png
-
-- name: "微软服务"
-  type: select
-  proxies: [默认代理, *group-names]
-  icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Microsoft.png
-
-- name: "谷歌FCM"
-  type: select
-  proxies: [默认代理, *group-names]
-  icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/FCM_Firebase_Cloud_Messaging.png
-
-- name: "谷歌服务"
-  type: select
-  proxies: [默认代理, *group-names]
-  icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Google.png
-
-- name: "TikTok"
-  type: select
-  proxies: [默认代理, *group-names]
-  icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/TikTok.png
-
-- name: "NETFLIX"
-  type: select
-  proxies: [默认代理, *group-names]
-  icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Netflix.png
-
-- name: "Disney"
-  type: select
-  proxies: [默认代理, *group-names]
-  icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Disney.png
-
-- name: "HBO"
-  type: select
-  proxies: [默认代理, *group-names]
-  icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/HBO_MAX.png
-
-- name: "PrimeVideo"
-  type: select
-  proxies: [默认代理, *group-names]
-  icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Prime.png
-
-- name: "Emby"
-  type: select
-  proxies: [默认代理, *group-names]
-  icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Emby.png
-
-- name: "Spotify"
-  type: select
-  proxies: [默认代理, *group-names]
-  icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Spotify.png
-
-- name: "巴哈姆特"
-  type: select
-  proxies: [默认代理, *group-names]
-  icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Bahamut.png
-
-- name: "哔哩哔哩海外版"
-  type: select
-  proxies: [默认代理, *group-names]
-  icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/bilibili.png
-
-- name: "Pixiv"
-  type: select
-  proxies: [默认代理, *group-names]
-  icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Pixiv.png
-
-- name: "Hulu"
-  type: select
-  proxies: [默认代理, *group-names]
-  icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Hulu.png
-
-- name: "Steam"
-  type: select
-  proxies: [默认代理, *group-names]
-  icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Steam.png
-
-- name: "游戏平台"
-  type: select
-  proxies: [默认代理, *group-names]
-  icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Game.png
-
-- name: "国外娱乐"
-  type: select
-  proxies: [默认代理, *group-names]
-  icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Stream.png
-
-- name: "国外电商"
-  type: select
-  proxies: [默认代理, *group-names]
-  icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Amazon.png
-
-- name: "GFW"
-  type: select
-  proxies: [默认代理, *group-names]
-  icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/GFW.png
-
-- name: "漏网之鱼"
-  type: select
-  proxies: [默认代理, *group-names]
-  icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Fish.png
-
-- name: "默认代理"
-  type: select
-  proxies: [*group-names]
-  icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Flight.png
-
-- name: "自动选择"
-  <<: *region-auto-options
-  icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Auto_Link.png
-
-- name: "全球直连"
-  type: select
-  proxies: [🎯直连]
-  hidden: true
-  icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/DIRECT.png
-
-- name: "全部节点"
-  <<: *region-select-options
-  icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Network_2.png
-
-- name: "香港故转"
-  type: fallback
-  proxies:
-    - 香港节点
-    - 香港自动
-  url: https://cp.cloudflare.com/generate_204
-  interval: 180
-  lazy: false
-  hidden: true
-  icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Hong_Kong.png
-- name: "香港节点"
-  <<: *region-select-options
-  filter: "(?i)香港|🇭🇰|hk|hongkong|hong kong"
-  icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Hong_Kong.png
-- name: "香港自动"
-  <<: *region-auto-options
-  filter: "(?i)香港|🇭🇰|hk|hongkong|hong kong"
-  icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Hong_Kong.png
-
-- name: "台湾省故转"
-  type: fallback
-  proxies:
-    - 台湾省节点
-    - 台湾省自动
-  url: https://cp.cloudflare.com/generate_204
-  interval: 180
-  lazy: false
-  hidden: true
-  icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Taiwan_Province.png
-- name: "台湾省节点"
-  <<: *region-select-options
-  filter: "(?i)台湾|🇹🇼|tw|taiwan|tai wan"
-  icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Taiwan_Province.png
-- name: "台湾省自动"
-  <<: *region-auto-options
-  filter: "(?i)台湾|🇹🇼|tw|taiwan|tai wan"
-  icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Taiwan_Province.png
-
-- name: "新加坡故转"
-  type: fallback
-  proxies:
-    - 新加坡节点
-    - 新加坡自动
-  url: https://cp.cloudflare.com/generate_204
-  interval: 180
-  lazy: false
-  hidden: true
-  icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Singapore.png
-- name: "新加坡节点"
-  <<: *region-select-options
-  filter: "(?i)新加坡|狮城|🇸🇬|sg|singapore"
-  icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Singapore.png
-- name: "新加坡自动"
-  <<: *region-auto-options
-  filter: "(?i)新加坡|狮城|🇸🇬|sg|singapore"
-  icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Singapore.png
-
-- name: "日本故转"
-  type: fallback
-  proxies:
-    - 日本节点
-    - 日本自动
-  url: https://cp.cloudflare.com/generate_204
-  interval: 180
-  lazy: false
-  hidden: true
-  icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Japan.png
-- name: "日本节点"
-  <<: *region-select-options
-  filter: "(?i)日本|东京|大阪|京都|名古屋|神户|横滨|札幌|仙台|福冈|广岛|🇯🇵|jp|japan"
-  icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Japan.png
-- name: "日本自动"
-  <<: *region-auto-options
-  filter: "(?i)日本|东京|大阪|京都|名古屋|神户|横滨|札幌|仙台|福冈|广岛|🇯🇵|jp|japan"
-  icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Japan.png
-
-- name: "韩国故转"
-  type: fallback
-  proxies:
-    - 韩国节点
-    - 韩国自动
-  url: https://cp.cloudflare.com/generate_204
-  interval: 180
-  lazy: false
-  hidden: true
-  icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/South_Korea.png
-- name: "韩国节点"
-  <<: *region-select-options
-  filter: "(?i)韩国|釜山|大邱|仁川|光州|大田|蔚山|🇰🇷|kr|korea"
-  icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/South_Korea.png
-- name: "韩国自动"
-  <<: *region-auto-options
-  filter: "(?i)韩国|釜山|大邱|仁川|光州|大田|蔚山|🇰🇷|kr|korea"
-  icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/South_Korea.png
-
-- name: "美国故转"
-  type: fallback
-  proxies:
-    - 美国节点
-    - 美国自动
-  url: https://cp.cloudflare.com/generate_204
-  interval: 180
-  lazy: false
-  hidden: true
-  icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/USA.png
-- name: "美国节点"
-  <<: *region-select-options
-  filter: "(?i)美国|洛杉矶|纽约|华盛顿|阿拉斯加|亚利桑那|科罗拉多|夏威夷|爱达荷|新墨西哥|蒙大拿|新泽西|俄亥俄|明尼苏达|密西西比|北卡罗来纳|南卡罗来纳|怀俄明|威斯康星|弗吉尼亚|西弗吉尼亚|田纳西|宾夕法尼亚|俄勒冈|德克萨斯|佐治亚|密歇根|🇺🇸|us|united state|america"
-  icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/USA.png
-- name: "美国自动"
-  <<: *region-auto-options
-  filter: "(?i)美国|洛杉矶|纽约|华盛顿|阿拉斯加|亚利桑那|科罗拉多|夏威夷|爱达荷|新墨西哥|蒙大拿|新泽西|俄亥俄|明尼苏达|密西西比|北卡罗来纳|南卡罗来纳|怀俄明|威斯康星|弗吉尼亚|西弗吉尼亚|田纳西|宾夕法尼亚|俄勒冈|德克萨斯|佐治亚|密歇根|🇺🇸|us|united state|america"
-  icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/USA.png
-
-- name: "澳大利亚故转"
-  type: fallback
-  proxies:
-    - 澳大利亚节点
-    - 澳大利亚自动
-  url: https://cp.cloudflare.com/generate_204
-  interval: 180
-  lazy: false
-  hidden: true
-  icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Australia.png
-- name: "澳大利亚节点"
-  <<: *region-select-options
-  filter: "(?i)澳大利亚|悉尼|墨尔本|布里斯班|珀斯|阿德莱德|坎培拉|达尔文|荷伯特|🇦🇺|au|Australia"
-  icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Australia.png
-- name: "澳大利亚自动"
-  <<: *region-auto-options
-  filter: "(?i)澳大利亚|悉尼|墨尔本|布里斯班|珀斯|阿德莱德|坎培拉|达尔文|荷伯特|🇦🇺|au|Australia"
-  icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Australia.png
-
-- name: "英国故转"
-  type: fallback
-  proxies:
-    - 英国节点
-    - 英国自动
-  url: https://cp.cloudflare.com/generate_204
-  interval: 180
-  lazy: false
-  hidden: true
-  icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/UK.png
-- name: "英国节点"
-  <<: *region-select-options
-  filter: "(?i)英国|伦敦|伯明翰|利兹|利物浦|格拉斯哥|谢菲尔德|曼彻斯特|爱丁堡|🇬🇧|uk|united kingdom|great britain"
-  icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/UK.png
-- name: "英国自动"
-  <<: *region-auto-options
-  filter: "(?i)英国|伦敦|伯明翰|利兹|利物浦|格拉斯哥|谢菲尔德|曼彻斯特|爱丁堡|🇬🇧|uk|united kingdom|great britain"
-  icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/UK.png
-
-- name: "德国故转"
-  type: fallback
-  proxies:
-    - 德国节点
-    - 德国自动
-  url: https://cp.cloudflare.com/generate_204
-  interval: 180
-  lazy: false
-  hidden: true
-  icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Germany.png
-- name: "德国节点"
-  <<: *region-select-options
-  filter: "(?i)德国|柏林|汉堡|慕尼黑|科隆|法兰克福|杜塞尔多夫|🇩🇪|de|germany"
-  icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Germany.png
-- name: "德国自动"
-  <<: *region-auto-options
-  filter: "(?i)德国|柏林|汉堡|慕尼黑|科隆|法兰克福|杜塞尔多夫|🇩🇪|de|germany"
-  icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Germany.png
-
-- name: "马来西亚故转"
-  type: fallback
-  proxies:
-    - 马来西亚节点
-    - 马来西亚自动
-  url: https://cp.cloudflare.com/generate_204
-  interval: 180
-  lazy: false
-  hidden: true
-  icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Malaysia.png
-- name: "马来西亚节点"
-  <<: *region-select-options
-  filter: "(?i)马来西亚|吉隆坡|古晋|亚庇|莎亚南|马六甲市|亚罗士打|美里|关丹|🇲🇾|my|malaysia"
-  icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Malaysia.png
-- name: "马来西亚自动"
-  <<: *region-auto-options
-  filter: "(?i)马来西亚|吉隆坡|古晋|亚庇|莎亚南|马六甲市|亚罗士打|美里|关丹|🇲🇾|my|malaysia"
-  icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Malaysia.png
-
-- name: "土耳其故转"
-  type: fallback
-  proxies:
-    - 土耳其节点
-    - 土耳其自动
-  url: https://cp.cloudflare.com/generate_204
-  interval: 180
-  lazy: false
-  hidden: true
-  icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Turkey.png
-- name: "土耳其节点"
-  <<: *region-select-options
-  filter: "(?i)土耳其|阿达纳|阿菲永|阿马西亚|阿纳穆尔|安卡拉|安塔利亚|艾登|巴勒克埃西尔|🇹🇷|tk|turkey"
-  icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Turkey.png
-- name: "土耳其自动"
-  <<: *region-auto-options
-  filter: "(?i)土耳其|阿达纳|阿菲永|阿马西亚|阿纳穆尔|安卡拉|安塔利亚|艾登|巴勒克埃西尔|🇹🇷|tk|turkey"
-  icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Turkey.png
+  - {
+    name: "国外学术",
+    type: select,
+    proxies: [ *names ],
+    icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Scholar.png
+  }
+  - {
+    name: "即时通讯",
+    type: select,
+    proxies: [ *names ],
+    icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Telegram.png
+  }
+  - {
+    name: "社交媒体",
+    type: select,
+    proxies: [ *names ],
+    icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Twitter.png
+  }
+  - {
+    name: "ChatGPT",
+    type: select,
+    proxies: [ *names ],
+    icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/ChatGPT.png
+  }
+  - {
+    name: "Copilot",
+    type: select,
+    proxies: [ *names ],
+    icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Microsoft_Copilot.png
+  }
+  - {
+    name: "国外AI",
+    type: select,
+    proxies: [ *names ],
+    icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/AI.png
+  }
+  - {
+    name: "GitHub",
+    type: select,
+    proxies: [ *names ],
+    icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/GitHub.png
+  }
+  - {
+    name: "测速工具",
+    type: select,
+    proxies: [ *names ],
+    icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/SpeedTest.png
+  }
+  - {
+    name: "YouTube",
+    type: select,
+    proxies: [ *names ],
+    icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/YouTube.png
+  }
+  - {
+    name: "AppleTV",
+    type: select,
+    proxies: [ *names ],
+    icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Apple_TV.png
+  }
+  - {
+    name: "苹果服务",
+    type: select,
+    proxies: [ *names ],
+    icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Apple_rainbow.png
+  }
+  - {
+    name: "微软服务",
+    type: select,
+    proxies: [ *names ],
+    icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Microsoft.png
+  }
+  - {
+    name: "谷歌FCM",
+    type: select,
+    proxies: [ *names ],
+    icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/FCM_Firebase_Cloud_Messaging.png
+  }
+  - {
+    name: "谷歌服务",
+    type: select,
+    proxies: [ *names ],
+    icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Google.png
+  }
+  - {
+    name: "TikTok",
+    type: select,
+    proxies: [ *names ],
+    icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/TikTok.png
+  }
+  - {
+    name: "NETFLIX",
+    type: select,
+    proxies: [ *names ],
+    icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Netflix.png
+  }
+  - {
+    name: "Disney",
+    type: select,
+    proxies: [ *names ],
+    icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Disney.png
+  }
+  - {
+    name: "HBO",
+    type: select,
+    proxies: [ *names ],
+    icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/HBO_MAX.png
+  }
+  - {
+    name: "PrimeVideo",
+    type: select,
+    proxies: [ *names ],
+    icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Prime.png
+  }
+  - {
+    name: "Emby",
+    type: select,
+    proxies: [ *names ],
+    icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Emby.png
+  }
+  - {
+    name: "Spotify",
+    type: select,
+    proxies: [ *names ],
+    icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Spotify.png
+  }
+  - {
+    name: "巴哈姆特",
+    type: select,
+    proxies: [ *names ],
+    icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Bahamut.png
+  }
+  - {
+    name: "哔哩哔哩海外版",
+    type: select,
+    proxies: [ *names ],
+    icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/bilibili.png
+  }
+  - {
+    name: "Pixiv",
+    type: select,
+    proxies: [ *names ],
+    icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Pixiv.png
+  }
+  - {
+    name: "Hulu",
+    type: select,
+    proxies: [ *names ],
+    icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Hulu.png
+  }
+  - {
+    name: "Steam",
+    type: select,
+    proxies: [ *names ],
+    icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Steam.png
+  }
+  - {
+    name: "游戏平台",
+    type: select,
+    proxies: [ *names ],
+    icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Game.png
+  }
+  - {
+    name: "国外娱乐",
+    type: select,
+    proxies: [ *names ],
+    icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Stream.png
+  }
+  - {
+    name: "国外电商",
+    type: select,
+    proxies: [ *names ],
+    icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Amazon.png
+  }
+  - {
+    name: "GFW",
+    type: select,
+    proxies: [ *names ],
+    icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/GFW.png
+  }
+  - {
+    name: "漏网之鱼",
+    type: select,
+    proxies: [ *names ],
+    icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Fish.png
+  }
+  - {
+    name: "默认代理",
+    type: select,
+    proxies: [
+         自动选择,
+         全球直连,
+         全部节点,
+         香港故转,
+         香港自动,
+         香港节点,
+         台湾省故转,
+         台湾省自动,
+         台湾省节点,
+         新加坡故转,
+         新加坡自动,
+         新加坡节点,
+         日本故转,
+         日本自动,
+         日本节点,
+         韩国故转,
+         韩国自动,
+         韩国节点,
+         美国故转,
+         美国自动,
+         美国节点,
+         澳大利亚故转,
+         澳大利亚自动,
+         澳大利亚节点,
+         英国故转,
+         英国自动,
+         英国节点,
+         德国故转,
+         德国自动,
+         德国节点,
+         马来西亚故转,
+         马来西亚自动,
+         马来西亚节点,
+         土耳其故转,
+         土耳其自动,
+         土耳其节点
+    ],
+    icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Flight.png
+  }
+  - {
+    name: "自动选择",
+    <<: *ao,
+    icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Fish.png
+  }
+  - {
+      name: "全球直连",
+      type: select,
+      proxies: [DIRECT],
+      hidden: true,
+      icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/DIRECT.png
+  }
+  - {
+    name: "全部节点",
+    <<: *so,
+    icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Network_2.png
+  }
+  - {
+    name: "香港故转",
+    <<: *fo,
+    proxies: [香港节点, 香港自动],
+    icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Hong_Kong.png
+  }
+  - {
+    name: "香港节点",
+    <<: *so,
+    filter: "(?i)香港|🇭🇰|hk|hongkong|hong kong",
+    icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Hong_Kong.png
+  }
+  - {
+    name: "香港自动",
+    <<: *ao,
+    filter: "(?i)香港|🇭🇰|hk|hongkong|hong kong",
+    icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Hong_Kong.png
+  }
+  - {
+    name: "台湾省故转",
+    <<: *fo,
+    proxies: [台湾省节点, 台湾省自动],
+    icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Taiwan_Province.png
+  }
+  - {
+    name: "台湾省节点",
+    <<: *so,
+    filter: "(?i)台湾|🇹🇼|tw|taiwan|tai wan",
+    icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Taiwan_Province.png
+  }
+  - {
+    name: "台湾省自动",
+    <<: *ao,
+    filter: "(?i)台湾|🇹🇼|tw|taiwan|tai wan",
+    icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Taiwan_Province.png
+  }
+  - {
+    name: "新加坡故转",
+    <<: *fo,
+    proxies: [新加坡节点, 新加坡自动],
+    icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Singapore.png
+  }
+  - {
+    name: "新加坡节点",
+    <<: *so,
+    filter: "(?i)新加坡|狮城|🇸🇬|sg|singapore",
+    icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Singapore.png
+  }
+  - {
+    name: "新加坡自动",
+    <<: *ao,
+    filter: "(?i)新加坡|狮城|🇸🇬|sg|singapore",
+    icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Singapore.png
+  }
+  - {
+    name: "日本故转",
+    <<: *fo,
+    proxies: [日本节点, 日本自动],
+    icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Japan.png
+  }
+  - {
+    name: "日本节点",
+    <<: *so,
+    filter: "(?i)日本|东京|大阪|京都|名古屋|神户|横滨|札幌|仙台|福冈|广岛|🇯🇵|jp|japan",
+    icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Japan.png
+  }
+  - {
+    name: "日本自动",
+    <<: *ao,
+    filter: "(?i)日本|东京|大阪|京都|名古屋|神户|横滨|札幌|仙台|福冈|广岛|🇯🇵|jp|japan",
+    icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Japan.png
+  }
+  - {
+    name: "韩国故转",
+    <<: *fo,
+    proxies: [韩国节点, 韩国自动],
+    icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/South_Korea.png
+  }
+  - {
+    name: "韩国节点",
+    <<: *so,
+    filter: "(?i)韩国|釜山|大邱|仁川|光州|大田|蔚山|🇰🇷|kr|korea",
+    icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/South_Korea.png
+  }
+  - {
+    name: "韩国自动",
+    <<: *ao,
+    filter: "(?i)韩国|釜山|大邱|仁川|光州|大田|蔚山|🇰🇷|kr|korea",
+    icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/South_Korea.png
+  }
+  - {
+    name: "美国故转",
+    <<: *fo,
+    proxies: [美国节点, 美国自动],
+    icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/USA.png
+  }
+  - {
+    name: "美国节点",
+    <<: *so,
+    filter: "(?i)美国|洛杉矶|纽约|华盛顿|阿拉斯加|亚利桑那|科罗拉多|夏威夷|爱达荷|新墨西哥|蒙大拿|新泽西|俄亥俄|明尼苏达|密西西比|北卡罗来纳|南卡罗来纳|怀俄明|威斯康星|弗吉尼亚|西弗吉尼亚|田纳西|宾夕法尼亚|俄勒冈|德克萨斯|佐治亚|密歇根|🇺🇸|us|united state|america",
+    icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/USA.png
+  }
+  - {
+    name: "美国自动",
+    <<: *ao,
+    filter: "(?i)美国|洛杉矶|纽约|华盛顿|阿拉斯加|亚利桑那|科罗拉多|夏威夷|爱达荷|新墨西哥|蒙大拿|新泽西|俄亥俄|明尼苏达|密西西比|北卡罗来纳|南卡罗来纳|怀俄明|威斯康星|弗吉尼亚|西弗吉尼亚|田纳西|宾夕法尼亚|俄勒冈|德克萨斯|佐治亚|密歇根|🇺🇸|us|united state|america",
+    icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/USA.png
+  }
+  - {
+    name: "澳大利亚故转",
+    <<: *fo,
+    proxies: [澳大利亚节点, 澳大利亚自动],
+    icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Australia.png
+  }
+  - {
+    name: "澳大利亚节点",
+    <<: *so,
+    filter: "(?i)澳大利亚|悉尼|墨尔本|布里斯班|珀斯|阿德莱德|坎培拉|达尔文|荷伯特|🇦🇺|au|Australia",
+    icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Australia.png
+  }
+  - {
+    name: "澳大利亚自动",
+    <<: *ao,
+    filter: "(?i)澳大利亚|悉尼|墨尔本|布里斯班|珀斯|阿德莱德|坎培拉|达尔文|荷伯特|🇦🇺|au|Australia",
+    icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Australia.png
+  }
+  - {
+    name: "英国故转",
+    <<: *fo,
+    proxies: [英国节点, 英国自动],
+    icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/UK.png
+  }
+  - {
+    name: "英国节点",
+    <<: *so,
+    filter: "(?i)英国|伦敦|伯明翰|利兹|利物浦|格拉斯哥|谢菲尔德|曼彻斯特|爱丁堡|🇬🇧|uk|united kingdom|great britain",
+    icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/UK.png
+  }
+  - {
+    name: "英国自动",
+    <<: *ao,
+    filter: "(?i)英国|伦敦|伯明翰|利兹|利物浦|格拉斯哥|谢菲尔德|曼彻斯特|爱丁堡|🇬🇧|uk|united kingdom|great britain",
+    icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/UK.png
+  }
+  - {
+    name: "德国故转",
+    <<: *fo,
+    proxies: [德国节点, 德国自动],
+    icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Germany.png
+  }
+  - {
+    name: "德国节点",
+    <<: *so,
+    filter: "(?i)德国|柏林|汉堡|慕尼黑|科隆|法兰克福|杜塞尔多夫|🇩🇪|de|germany",
+    icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Germany.png
+  }
+  - {
+    name: "德国自动",
+    <<: *ao,
+    filter: "(?i)德国|柏林|汉堡|慕尼黑|科隆|法兰克福|杜塞尔多夫|🇩🇪|de|germany",
+    icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Germany.png
+  }
+  - {
+    name: "马来西亚故转",
+    <<: *fo,
+    proxies: [马来西亚节点, 马来西亚自动],
+    icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Malaysia.png
+  }
+  - {
+    name: "马来西亚节点",
+    <<: *so,
+    filter: "(?i)马来西亚|吉隆坡|古晋|亚庇|莎亚南|马六甲市|亚罗士打|美里|关丹|🇲🇾|my|malaysia",
+    icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Malaysia.png
+  }
+  - {
+    name: "马来西亚自动",
+    <<: *ao,
+    filter: "(?i)马来西亚|吉隆坡|古晋|亚庇|莎亚南|马六甲市|亚罗士打|美里|关丹|🇲🇾|my|malaysia",
+    icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Malaysia.png
+  }
+  - {
+    name: "土耳其故转",
+    <<: *fo,
+    proxies: [土耳其节点, 土耳其自动],
+    icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Turkey.png
+  }
+  - {
+    name: "土耳其节点",
+    <<: *so,
+    filter: "(?i)土耳其|阿达纳|阿菲永|阿马西亚|阿纳穆尔|安卡拉|安塔利亚|艾登|巴勒克埃西尔|🇹🇷|tk|turkey",
+    icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Turkey.png
+  }
+  - {
+    name: "土耳其自动",
+    <<: *ao,
+    filter: "(?i)土耳其|阿达纳|阿菲永|阿马西亚|阿纳穆尔|安卡拉|安塔利亚|艾登|巴勒克埃西尔|🇹🇷|tk|turkey",
+    icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Turkey.png
+  }
 
 
 # 全局设置
@@ -585,13 +607,12 @@ keep-alive-idle: 300
 # RESTful API 监听地址（外部控制监听地址）
 external-controller: 0.0.0.0:9090
 # RESTful API 的访问密钥
-secret: "123456"
+secret: ""
 # RESTful API HTTPS 监听地址，如果设置了该选项，需要同时配置 tls 的密钥文件
 # external-controller-tls: 0.0.0.0:9443
 # RESTful API CORS 标头配置
 external-controller-cors:
-  allow-origins:
-    - "*"
+  allow-origins: ["*"]
   allow-private-network: true
 # RESTful API Unix socket 监听地址（ windows 版本大于 17063 也可以使用，即大于等于 1803/RS4 版本即可使用 ）
 # ！！！注意： 从Unix socket访问api接口不会验证secret， 如果开启请自行保证安全问题 ！！！
