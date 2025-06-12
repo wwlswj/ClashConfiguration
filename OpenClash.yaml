@@ -2,7 +2,7 @@
 proxy-providers:
   provider1:
     type: http
-    url: "http://test.com"
+    url: "订阅链接1"
     path: ./proxy_providers/provider1.yaml
     interval: 3600
     proxy: DIRECT
@@ -19,7 +19,7 @@ proxy-providers:
       skip-cert-verify: true
   provider2:
     type: http
-    url: "http://test.com"
+    url: "订阅链接2"
     path: ./proxy_providers/provider2.yaml
     interval: 3600
     proxy: DIRECT
@@ -36,7 +36,7 @@ proxy-providers:
       skip-cert-verify: true
   provider3:
     type: http
-    url: "http://test.com"
+    url: "订阅链接3"
     path: ./proxy_providers/provider3.yaml
     interval: 3600
     proxy: DIRECT
@@ -53,542 +53,28 @@ proxy-providers:
       skip-cert-verify: true
 
 
-# 手动选择区域组通用设置
-so: &so { type: select, hidden: false, include-all: true }
-# 自动选择区域组通用设置
-ao: &ao {type: url-test, hidden: true, include-all: true, tolerance: 50}
-# 故障转移区域组通用设置
-fo: &fo {type: fallback, hidden: true}
-# 策略组名称集，便于创建其它策略组
-names: &names [
-         默认代理,
-         自动选择,
-         全球直连,
-         全部节点,
-         香港故转,
-         香港自动,
-         香港节点,
-         台湾省故转,
-         台湾省自动,
-         台湾省节点,
-         新加坡故转,
-         新加坡自动,
-         新加坡节点,
-         日本故转,
-         日本自动,
-         日本节点,
-         韩国故转,
-         韩国自动,
-         韩国节点,
-         美国故转,
-         美国自动,
-         美国节点,
-         澳大利亚故转,
-         澳大利亚自动,
-         澳大利亚节点,
-         英国故转,
-         英国自动,
-         英国节点,
-         德国故转,
-         德国自动,
-         德国节点,
-         马来西亚故转,
-         马来西亚自动,
-         马来西亚节点,
-         土耳其故转,
-         土耳其自动,
-         土耳其节点
-]
-# 策略组
-proxy-groups:
-  - {
-    name: "国外学术",
-    type: select,
-    proxies: [ *names ],
-    icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Scholar.png
-  }
-  - {
-    name: "即时通讯",
-    type: select,
-    proxies: [ *names ],
-    icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Telegram.png
-  }
-  - {
-    name: "社交媒体",
-    type: select,
-    proxies: [ *names ],
-    icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Twitter.png
-  }
-  - {
-    name: "ChatGPT",
-    type: select,
-    proxies: [ *names ],
-    icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/ChatGPT.png
-  }
-  - {
-    name: "Copilot",
-    type: select,
-    proxies: [ *names ],
-    icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Microsoft_Copilot.png
-  }
-  - {
-    name: "国外AI",
-    type: select,
-    proxies: [ *names ],
-    icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/AI.png
-  }
-  - {
-    name: "GitHub",
-    type: select,
-    proxies: [ *names ],
-    icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/GitHub.png
-  }
-  - {
-    name: "测速工具",
-    type: select,
-    proxies: [ *names ],
-    icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/SpeedTest.png
-  }
-  - {
-    name: "YouTube",
-    type: select,
-    proxies: [ *names ],
-    icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/YouTube.png
-  }
-  - {
-    name: "AppleTV",
-    type: select,
-    proxies: [ *names ],
-    icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Apple_TV.png
-  }
-  - {
-    name: "苹果服务",
-    type: select,
-    proxies: [ *names ],
-    icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Apple_rainbow.png
-  }
-  - {
-    name: "微软服务",
-    type: select,
-    proxies: [ *names ],
-    icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Microsoft.png
-  }
-  - {
-    name: "谷歌FCM",
-    type: select,
-    proxies: [ *names ],
-    icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/FCM_Firebase_Cloud_Messaging.png
-  }
-  - {
-    name: "谷歌服务",
-    type: select,
-    proxies: [ *names ],
-    icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Google.png
-  }
-  - {
-    name: "TikTok",
-    type: select,
-    proxies: [ *names ],
-    icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/TikTok.png
-  }
-  - {
-    name: "NETFLIX",
-    type: select,
-    proxies: [ *names ],
-    icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Netflix.png
-  }
-  - {
-    name: "Disney",
-    type: select,
-    proxies: [ *names ],
-    icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Disney.png
-  }
-  - {
-    name: "HBO",
-    type: select,
-    proxies: [ *names ],
-    icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/HBO_MAX.png
-  }
-  - {
-    name: "PrimeVideo",
-    type: select,
-    proxies: [ *names ],
-    icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Prime.png
-  }
-  - {
-    name: "Emby",
-    type: select,
-    proxies: [ *names ],
-    icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Emby.png
-  }
-  - {
-    name: "Spotify",
-    type: select,
-    proxies: [ *names ],
-    icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Spotify.png
-  }
-  - {
-    name: "巴哈姆特",
-    type: select,
-    proxies: [ *names ],
-    icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Bahamut.png
-  }
-  - {
-    name: "哔哩哔哩海外版",
-    type: select,
-    proxies: [ *names ],
-    icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/bilibili.png
-  }
-  - {
-    name: "Pixiv",
-    type: select,
-    proxies: [ *names ],
-    icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Pixiv.png
-  }
-  - {
-    name: "Hulu",
-    type: select,
-    proxies: [ *names ],
-    icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Hulu.png
-  }
-  - {
-    name: "Steam",
-    type: select,
-    proxies: [ *names ],
-    icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Steam.png
-  }
-  - {
-    name: "游戏平台",
-    type: select,
-    proxies: [ *names ],
-    icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Game.png
-  }
-  - {
-    name: "国外娱乐",
-    type: select,
-    proxies: [ *names ],
-    icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Stream.png
-  }
-  - {
-    name: "国外电商",
-    type: select,
-    proxies: [ *names ],
-    icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Amazon.png
-  }
-  - {
-    name: "GFW",
-    type: select,
-    proxies: [ *names ],
-    icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/GFW.png
-  }
-  - {
-    name: "漏网之鱼",
-    type: select,
-    proxies: [ *names ],
-    icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Fish.png
-  }
-  - {
-    name: "默认代理",
-    type: select,
-    proxies: [
-         自动选择,
-         全球直连,
-         全部节点,
-         香港故转,
-         香港自动,
-         香港节点,
-         台湾省故转,
-         台湾省自动,
-         台湾省节点,
-         新加坡故转,
-         新加坡自动,
-         新加坡节点,
-         日本故转,
-         日本自动,
-         日本节点,
-         韩国故转,
-         韩国自动,
-         韩国节点,
-         美国故转,
-         美国自动,
-         美国节点,
-         澳大利亚故转,
-         澳大利亚自动,
-         澳大利亚节点,
-         英国故转,
-         英国自动,
-         英国节点,
-         德国故转,
-         德国自动,
-         德国节点,
-         马来西亚故转,
-         马来西亚自动,
-         马来西亚节点,
-         土耳其故转,
-         土耳其自动,
-         土耳其节点
-    ],
-    icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Flight.png
-  }
-  - {
-    name: "自动选择",
-    <<: *ao,
-    icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Fish.png
-  }
-  - {
-      name: "全球直连",
-      type: select,
-      proxies: [DIRECT],
-      hidden: true,
-      icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/DIRECT.png
-  }
-  - {
-    name: "全部节点",
-    <<: *so,
-    icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Network_2.png
-  }
-  - {
-    name: "香港故转",
-    <<: *fo,
-    proxies: [香港节点, 香港自动],
-    icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Hong_Kong.png
-  }
-  - {
-    name: "香港节点",
-    <<: *so,
-    filter: "(?i)香港|🇭🇰|hk|hongkong|hong kong",
-    icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Hong_Kong.png
-  }
-  - {
-    name: "香港自动",
-    <<: *ao,
-    filter: "(?i)香港|🇭🇰|hk|hongkong|hong kong",
-    icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Hong_Kong.png
-  }
-  - {
-    name: "台湾省故转",
-    <<: *fo,
-    proxies: [台湾省节点, 台湾省自动],
-    icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Taiwan_Province.png
-  }
-  - {
-    name: "台湾省节点",
-    <<: *so,
-    filter: "(?i)台湾|🇹🇼|tw|taiwan|tai wan",
-    icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Taiwan_Province.png
-  }
-  - {
-    name: "台湾省自动",
-    <<: *ao,
-    filter: "(?i)台湾|🇹🇼|tw|taiwan|tai wan",
-    icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Taiwan_Province.png
-  }
-  - {
-    name: "新加坡故转",
-    <<: *fo,
-    proxies: [新加坡节点, 新加坡自动],
-    icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Singapore.png
-  }
-  - {
-    name: "新加坡节点",
-    <<: *so,
-    filter: "(?i)新加坡|狮城|🇸🇬|sg|singapore",
-    icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Singapore.png
-  }
-  - {
-    name: "新加坡自动",
-    <<: *ao,
-    filter: "(?i)新加坡|狮城|🇸🇬|sg|singapore",
-    icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Singapore.png
-  }
-  - {
-    name: "日本故转",
-    <<: *fo,
-    proxies: [日本节点, 日本自动],
-    icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Japan.png
-  }
-  - {
-    name: "日本节点",
-    <<: *so,
-    filter: "(?i)日本|东京|大阪|京都|名古屋|神户|横滨|札幌|仙台|福冈|广岛|🇯🇵|jp|japan",
-    icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Japan.png
-  }
-  - {
-    name: "日本自动",
-    <<: *ao,
-    filter: "(?i)日本|东京|大阪|京都|名古屋|神户|横滨|札幌|仙台|福冈|广岛|🇯🇵|jp|japan",
-    icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Japan.png
-  }
-  - {
-    name: "韩国故转",
-    <<: *fo,
-    proxies: [韩国节点, 韩国自动],
-    icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/South_Korea.png
-  }
-  - {
-    name: "韩国节点",
-    <<: *so,
-    filter: "(?i)韩国|釜山|大邱|仁川|光州|大田|蔚山|🇰🇷|kr|korea",
-    icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/South_Korea.png
-  }
-  - {
-    name: "韩国自动",
-    <<: *ao,
-    filter: "(?i)韩国|釜山|大邱|仁川|光州|大田|蔚山|🇰🇷|kr|korea",
-    icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/South_Korea.png
-  }
-  - {
-    name: "美国故转",
-    <<: *fo,
-    proxies: [美国节点, 美国自动],
-    icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/USA.png
-  }
-  - {
-    name: "美国节点",
-    <<: *so,
-    filter: "(?i)美国|洛杉矶|纽约|华盛顿|阿拉斯加|亚利桑那|科罗拉多|夏威夷|爱达荷|新墨西哥|蒙大拿|新泽西|俄亥俄|明尼苏达|密西西比|北卡罗来纳|南卡罗来纳|怀俄明|威斯康星|弗吉尼亚|西弗吉尼亚|田纳西|宾夕法尼亚|俄勒冈|德克萨斯|佐治亚|密歇根|🇺🇸|us|united state|america",
-    icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/USA.png
-  }
-  - {
-    name: "美国自动",
-    <<: *ao,
-    filter: "(?i)美国|洛杉矶|纽约|华盛顿|阿拉斯加|亚利桑那|科罗拉多|夏威夷|爱达荷|新墨西哥|蒙大拿|新泽西|俄亥俄|明尼苏达|密西西比|北卡罗来纳|南卡罗来纳|怀俄明|威斯康星|弗吉尼亚|西弗吉尼亚|田纳西|宾夕法尼亚|俄勒冈|德克萨斯|佐治亚|密歇根|🇺🇸|us|united state|america",
-    icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/USA.png
-  }
-  - {
-    name: "澳大利亚故转",
-    <<: *fo,
-    proxies: [澳大利亚节点, 澳大利亚自动],
-    icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Australia.png
-  }
-  - {
-    name: "澳大利亚节点",
-    <<: *so,
-    filter: "(?i)澳大利亚|悉尼|墨尔本|布里斯班|珀斯|阿德莱德|坎培拉|达尔文|荷伯特|🇦🇺|au|Australia",
-    icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Australia.png
-  }
-  - {
-    name: "澳大利亚自动",
-    <<: *ao,
-    filter: "(?i)澳大利亚|悉尼|墨尔本|布里斯班|珀斯|阿德莱德|坎培拉|达尔文|荷伯特|🇦🇺|au|Australia",
-    icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Australia.png
-  }
-  - {
-    name: "英国故转",
-    <<: *fo,
-    proxies: [英国节点, 英国自动],
-    icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/UK.png
-  }
-  - {
-    name: "英国节点",
-    <<: *so,
-    filter: "(?i)英国|伦敦|伯明翰|利兹|利物浦|格拉斯哥|谢菲尔德|曼彻斯特|爱丁堡|🇬🇧|uk|united kingdom|great britain",
-    icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/UK.png
-  }
-  - {
-    name: "英国自动",
-    <<: *ao,
-    filter: "(?i)英国|伦敦|伯明翰|利兹|利物浦|格拉斯哥|谢菲尔德|曼彻斯特|爱丁堡|🇬🇧|uk|united kingdom|great britain",
-    icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/UK.png
-  }
-  - {
-    name: "德国故转",
-    <<: *fo,
-    proxies: [德国节点, 德国自动],
-    icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Germany.png
-  }
-  - {
-    name: "德国节点",
-    <<: *so,
-    filter: "(?i)德国|柏林|汉堡|慕尼黑|科隆|法兰克福|杜塞尔多夫|🇩🇪|de|germany",
-    icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Germany.png
-  }
-  - {
-    name: "德国自动",
-    <<: *ao,
-    filter: "(?i)德国|柏林|汉堡|慕尼黑|科隆|法兰克福|杜塞尔多夫|🇩🇪|de|germany",
-    icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Germany.png
-  }
-  - {
-    name: "马来西亚故转",
-    <<: *fo,
-    proxies: [马来西亚节点, 马来西亚自动],
-    icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Malaysia.png
-  }
-  - {
-    name: "马来西亚节点",
-    <<: *so,
-    filter: "(?i)马来西亚|吉隆坡|古晋|亚庇|莎亚南|马六甲市|亚罗士打|美里|关丹|🇲🇾|my|malaysia",
-    icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Malaysia.png
-  }
-  - {
-    name: "马来西亚自动",
-    <<: *ao,
-    filter: "(?i)马来西亚|吉隆坡|古晋|亚庇|莎亚南|马六甲市|亚罗士打|美里|关丹|🇲🇾|my|malaysia",
-    icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Malaysia.png
-  }
-  - {
-    name: "土耳其故转",
-    <<: *fo,
-    proxies: [土耳其节点, 土耳其自动],
-    icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Turkey.png
-  }
-  - {
-    name: "土耳其节点",
-    <<: *so,
-    filter: "(?i)土耳其|阿达纳|阿菲永|阿马西亚|阿纳穆尔|安卡拉|安塔利亚|艾登|巴勒克埃西尔|🇹🇷|tk|turkey",
-    icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Turkey.png
-  }
-  - {
-    name: "土耳其自动",
-    <<: *ao,
-    filter: "(?i)土耳其|阿达纳|阿菲永|阿马西亚|阿纳穆尔|安卡拉|安塔利亚|艾登|巴勒克埃西尔|🇹🇷|tk|turkey",
-    icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Turkey.png
-  }
+# 添加直连节点（不知为何，不加此节点运行不成功）
+proxies:
+  - { name: 直连, type: direct }
 
 
-# 全局设置
-# 允许其他设备通过 Clash 代理访问互联网（作为路由器使用必须打开的选项）
-allow-lan: true
-# 绑定 IP 地址，被 Clash 代理的设备只能通过该地址访问互联网，只在 allow-lan 为 true 时生效，'*' 表示所有地址
-bind-address: "*"
-# 允许连接到 Clash 的 IP 地址段，仅在 allow-lan 为 true 时生效, 默认值为 0.0.0.0/0 和::/0
-lan-allowed-ips:
-  - 0.0.0.0/0
-  - ::/0
-# 禁止连接到 Clash 的 IP 地址段，黑名单优先级高于白名单，默认值为空
-# lan-disallowed-ips:
-  # - 192.168.0.3/32
-# 通过 http、https 协议或 socks 协议连接 Clash 时的用户名和密钥
-# authentication:
-  # - "username:password"
-  # - "username1:password1"
-# 允许跳过安全验证的 IP 段（这些 IP 通过 http(s) 或 socks 协议连接 Clash 时不需要验证用户名和密钥）
-skip-auth-prefixes:
-  - 127.0.0.1/8
-  - ::1/128
-# HTTP(S) 和 SOCKS 代理混合端口
-mixed-port: 10801
+# 全局配置
+# 运行模式，有 3 个值可选：rule，默认值，规则模式；global，全局代理；direct，全局直连
+mode: rule
 # HTTP(S) 代理端口
 port: 7890
 # SOCKS5 代理端口
 socks-port: 7891
+# HTTP(S) 和 SOCKS 代理混合端口
+mixed-port: 7892
 # redirect(流量转发) 透明代理端口，仅代理 TCP 流量，仅适用于 Linux(Android) 或 macOS 平台下的 Clash 应用
-redir-port: 7892
+redir-port: 7893
 # tproxy 透明代理端口，可代理 TCP 与 UDP 流量，仅适用于 Linux(Android) 平台下的 Clash 应用
-tproxy-port: 7893
-# 进程匹配模式，控制 Clash 内核是否匹配发起代理请求的进程
-# 有 3 个值可选：always，表示强制匹配所有进程；strict，默认值，表示由 Clash 自己决定是否开启；off，不匹配进程，推荐在路由器上使用此模式
-find-process-mode: off
-# 运行模式，有 3 个值可选：rule，默认值，规则模式；global，全局代理；direct，全局直连
-mode: rule
-# 设置 Clash 内核在控制台和控制页面输出日志的级别
-# silent， 静默，不输出
-# error，仅输出发生错误至无法使用的日志
-# warning，输出发生错误但不影响运行的日志，以及 error 级别内容
-# info，输出一般运行的内容，以及 error 和 warning 级别的日志
-# debug，尽可能多的输出运行中所有的信息
-log-level: debug
+tproxy-port: 7894
+# 允许其他设备通过 Clash 代理访问互联网（作为路由器使用必须打开的选项）
+allow-lan: true
+# 绑定 IP 地址，被 Clash 代理的设备只能通过该地址访问互联网，只在 allow-lan 为 true 时生效，'*' 表示所有地址
+bind-address: "*"
 # 是否允许 Clash 内核接受 IPV6 流量
 # 如果设置为 false，会阻断所有 IPV6 链接并屏蔽 DNS 请求返回的 AAAA 记录
 # 设置为 true 时，需要 Clash 宿主（如路由器、OpenWRT 等）支持且开启 IPV6
@@ -597,79 +83,35 @@ ipv6: true
 unified-delay: true
 # 设置是否启用 TCP 并发连接，若启用，将会使用 dns 解析出的所有 IP 地址进行连接，使用第一个成功的连接
 tcp-concurrent: true
-# 设置是否禁止 Clash 主动保持 TCP 连接，Android 平台下的 Clash 应用默认为 true，也就是 Android 平台下默认禁用该项
-disable-keep-alive: false
-# Clash 主动保持 TCP 连接的数据包发送时间间隔，单位为秒
-keep-alive-interval: 15
+# 设置 Clash 内核在控制台和控制页面输出日志的级别
+# silent， 静默，不输出
+# error，仅输出发生错误至无法使用的日志
+# warning，输出发生错误但不影响运行的日志，以及 error 级别内容
+# info，输出一般运行的内容，以及 error 和 warning 级别的日志
+# debug，尽可能多的输出运行中所有的信息
+log-level: debug
+# 进程匹配模式，控制 Clash 内核是否匹配发起代理请求的进程
+# 有 3 个值可选：always，表示强制匹配所有进程；strict，默认值，表示由 Clash 自己决定是否开启；off，不匹配进程，推荐在路由器上使用此模式
+find-process-mode: "off"
+# 设置 Clash 内核的出站网络接口，若内核非独立运行（插件形式），则该项无需设置
+# interface-name: en0
+# 全局 TLS 指纹，优先级低于 proxy 内的 client-fingerprint
+# 可选： "chrome","firefox","safari","ios","random","none" 选项
+global-client-fingerprint: chrome
+# 自定义外部资源下载时使用的的 UA，默认为 clash.meta
+global-ua: clash.meta
 # 主动保持 TCP 连接的数据包的停歇时间，也就是当一个 TCP 连接空闲多久时 Clash 开始主动发送数据包使其保持连接，单位为秒
 keep-alive-idle: 300
-# 外部控制，通过前后端分离的通用 API 接口 RESTful API 来控制 Clash 内核
-# RESTful API 监听地址（外部控制监听地址）
-external-controller: 0.0.0.0:9090
-# RESTful API 的访问密钥
-secret: ""
-# RESTful API HTTPS 监听地址，如果设置了该选项，需要同时配置 tls 的密钥文件
-# external-controller-tls: 0.0.0.0:9443
-# RESTful API CORS 标头配置
-external-controller-cors:
-  allow-origins: ["*"]
-  allow-private-network: true
-# RESTful API Unix socket 监听地址（ windows 版本大于 17063 也可以使用，即大于等于 1803/RS4 版本即可使用 ）
-# ！！！注意： 从Unix socket访问api接口不会验证secret， 如果开启请自行保证安全问题 ！！！
-# 测试方法： curl -v --unix-socket "mihomo.sock" http://localhost/
-# external-controller-unix: mihomo.sock
-# RESTful API Windows namedpipe 监听地址
-# ！！！注意： 从Windows namedpipe 访问 api 接口不会验证 secret， 如果开启请自行保证安全问题 ！！！
-# external-controller-pipe: \\.\pipe\mihomo
-# 在RESTful API 端口上开启 DOH 服务器
-# ！！！该URL不会验证secret， 如果开启请自行保证安全问题 ！！！
-# external-doh-server: /dns-query
-# 设置外部控制界面的资源路径，可以将静态网页资源 (比如 Clash-dashboard) 运行在 Clash API
-# 可以为绝对路径，或者 Clash 工作目录的相对路径
-# 访问地址为 http://{{external-controller}}/ui
-# ！！！当 mihomo 等内核作为 Clash 应用的插件使用时，无需设置外部控制的用户界面！！！
-external-ui: ./ui
-# 自定义外部控制的用户界面的名字，非必需选项，若不指定，用户界面更新时则直接更新到 external-ui 路径
-# 以用户界面名称为 xd 为例，设置好后外部控制界面的资源路径会合并为 external-ui/xd，其中 external-ui 为上一步设置的路径
-external-ui-name: xd
-# 外部控制界面资源的下载地址
-# 目前支持下载zip,tgz格式的压缩包
-external-ui-url: "https://github.com/MetaCubeX/metacubexd/archive/refs/heads/gh-pages.zip"
-# 设置安全证书，目前仅用于外部控制 RESTful API 的 https 协议
-# tls:
-  # PEM 格式证书内容，或者证书的路径
-  # certificate: string
-  # 证书对应的 PEM 格式私钥内容，或者私钥路径
-  # private-key: string
-  # 设置是否开启 ech，如果填写则开启ech（可由 mihomo generate ech-keypair <明文域名> 生成）
-  # ech-key: |
-  #   -----BEGIN ECH KEYS-----
-  #   ACATwY30o/RKgD6hgeQxwrSiApLaCgU+HKh7B6SUrAHaDwBD/g0APwAAIAAgHjzK
-  #   madSJjYQIf9o1N5GXjkW4DEEeb17qMxHdwMdNnwADAABAAEAAQACAAEAAwAIdGVz
-  #   dC5jb20AAA==
-  #   -----END ECH KEYS-----
-  # 设置合并类型的 certificates
-  # custom-certificates:
-    # - |
-      # -----BEGIN CERTIFICATE-----
-      # format/pem...
-      # -----END CERTIFICATE-----
+# Clash 主动保持 TCP 连接的数据包发送时间间隔，单位为秒
+keep-alive-interval: 15
+# 设置是否禁止 Clash 主动保持 TCP 连接，Android 平台下的 Clash 应用默认为 true，也就是 Android 平台下默认禁用该项
+disable-keep-alive: false
 # 设置缓存
 profile:
   # 储存策略组的选择，以供下次启动时使用
   store-selected: true
   # 储存 fakeip 映射表，域名再次发生连接时，使用原有映射地址
   store-fake-ip: true
-# 设置 Clash 内核的出站网络接口，若内核非独立运行（插件形式），则该项无需设置
-# interface-name: en0
-# 全局 TLS 指纹，优先级低于 proxy 内的 client-fingerprint
-# 可选： "chrome","firefox","safari","ios","random","none" options.
-# 目前支持开启 TLS 传输的 TCP/grpc/WS/HTTP , 支持协议有 VLESS,Vmess 和 trojan
-global-client-fingerprint: chrome
-# 自定义外部资源下载时使用的的 UA，默认为 clash.meta
-global-ua: clash.meta
-# 设置是否启用外部资源下载的 ETag 支持，默认为 true
-etag-support: true
 # 设置是否更改 geoip 使用文件，mmdb 或者 dat，可选 true/false,true为 dat，此项有默认值 false
 geodata-mode: false
 # 设置 geo 文件加载模式
@@ -688,6 +130,67 @@ geox-url:
   mmdb: "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/country.mmdb"
   asn: "https://github.com/xishang0128/geoip/releases/download/latest/GeoLite2-ASN.mmdb"
 
+# 控制面板
+external-controller: 0.0.0.0:9090
+secret: ""
+external-ui: ./ui
+external-ui-name: xd
+external-ui-url: "https://github.com/MetaCubeX/metacubexd/archive/refs/heads/gh-pages.zip"
+
+# 嗅探域名设置
+sniffer:
+  # 域名嗅探开关
+  enable: true
+  # 对 redir-host 类型识别的流量进行强制嗅探
+  # 如：Tun、Redir 和 TProxy 并且 DNS 为 redir-host 的皆属于此类
+  force-dns-mapping: true
+  # 对所有未获取到域名的流量进行强制嗅探
+  parse-pure-ip: true
+  # 是否使用嗅探结果作为实际访问，默认 true
+  # 全局配置，优先级低于 sniffer.sniff 实际配置
+  override-destination: true
+  sniff:
+    # TLS 和 QUIC 如果不设置，默认嗅探 443 端口
+    QUIC:
+      ports: [443, 8443]
+    TLS:
+      ports: [443, 8443]
+    # HTTP 默认嗅探 80 端口
+    HTTP:
+      ports: [80, 8080-8880]
+      # 可覆盖 sniffer.override-destination
+      override-destination: true
+  # 强制进行嗅探的域名
+  force-domain:
+    - +.v2ex.com
+    - +.netflix.com
+    - +.nflxvideo.net
+    - +.amazonaws.com
+    - +.media.dssott.com
+  # 需要跳过的源 IP 嗅探地址
+  # skip-src-address:
+  #   - 192.168.0.3/32
+  # 需要跳过的目标 IP 嗅探地址
+  # skip-dst-address:
+  #   - 192.168.0.3/32
+  # 需要跳过嗅探的域名
+  skip-domain:
+    - Mijia Cloud
+    - +.apple.com
+    - dlg.io.mi.com
+    - +.oray.com
+    - +.sunlogin.net
+    - +.push.apple.com
+
+# Tun 设置
+tun:
+  enable: true
+  # 设置 tun 堆栈模式，可选 system/gvisor/mixed
+  stack: mixed
+  dns-hijack: ["any:53", "tcp://any:53"]
+  auto-route: true
+  auto-redirect: true
+  auto-detect-interface: true
 
 # DNS 设置
 dns:
@@ -843,10 +346,10 @@ dns:
     - "+.aliyun.com"
   # 针对个别域名，为其指定 DNS，该设置的优先级高于 nameserver 和 fallback 配置项
   # nameserver-policy:
-    # '+.arpa': '10.0.0.1'
-    # 'rule-set:cn':
-    # - https://doh.pub/dns-query
-    # - https://dns.alidns.com/dns-query
+  # '+.arpa': '10.0.0.1'
+  # 'rule-set:cn':
+  # - https://doh.pub/dns-query
+  # - https://dns.alidns.com/dns-query
   # 用于解析国内流量的 DNS 服务器
   # 根据 Fake IP 原理，nameserver 仅用于解析不需要代理的域名，因此这里应设置为国内公共 DNS 或运营商 DNS
   # 而运营商 DNS 是最快的，因此这里强烈建议设置为运营商 DNS，同 default-nameserver
@@ -856,99 +359,505 @@ dns:
   # 后备域名解析服务器，一般情况下使用境外 DNS, 保证结果可信
   # 配置 fallback后默认启用 fallback-filter,geoip-code为 cn
   # fallback:
-    # - tls://8.8.4.4
-    # - tls://1.1.1.1
+  # - tls://8.8.4.4
+  # - tls://1.1.1.1
   # 代理节点域名解析服务器，仅用于解析代理节点的域名
   # 这里不建议设置，因为不设置的情况下 Clash 会自动通过距离代理节点最近的 CDN 解析代理节点的域名
   # 那样速度肯定是最快的，如果这里设置了 DNS 反而成了负优化
   # proxy-server-nameserver:
-    # - https://doh.pub/dns-query
+  # - https://doh.pub/dns-query
   # 用于 direct 出口域名解析的 DNS 服务器，如果不填则遵循 nameserver-policy、nameserver 和 fallback 的配置
   # 这里设置的是不经过 Clash 内核的流量向哪个 DNS 查询解析
   # 这里不建议设置，因为根据解析流程，如果这里设置了 DNS，分流规则命中的无需代理的流量经 nameserver 解析后还要在这里再次解析
   # direct-nameserver:
-    # - system
+  # - system
   # 这里的设置表示 direct-nameserver 是否遵循 nameserver-policy，默认为不遵守，仅当 direct-nameserver 不为空时生效
   # direct-nameserver-follow-policy: false
   # 后备域名解析服务器筛选，满足条件的将使用 fallback结果或只使用 fallback解析
   # fallback-filter:
-    # geoip: true
-    # geoip-code: CN
-    # geosite:
-      # - gfw
-    # ipcidr:
-      # - 240.0.0.0/4
-    # domain:
-      # - '+.google.com'
-      # - '+.facebook.com'
-      # - '+.youtube.com'
+  # geoip: true
+  # geoip-code: CN
+  # geosite:
+  # - gfw
+  # ipcidr:
+  # - 240.0.0.0/4
+  # domain:
+  # - '+.google.com'
+  # - '+.facebook.com'
+  # - '+.youtube.com'
 
+# 策略组名称集，便于设置其它策略组
+names:
+  &names {
+    type: select,
+    hidden: false,
+    proxies:
+      [
+        默认代理,
+        自动选择,
+        全球直连,
+        全部节点,
+        香港故转,
+        香港自动,
+        香港节点,
+        台湾省故转,
+        台湾省自动,
+        台湾省节点,
+        新加坡故转,
+        新加坡自动,
+        新加坡节点,
+        日本故转,
+        日本自动,
+        日本节点,
+        韩国故转,
+        韩国自动,
+        韩国节点,
+        美国故转,
+        美国自动,
+        美国节点,
+        澳大利亚故转,
+        澳大利亚自动,
+        澳大利亚节点,
+        英国故转,
+        英国自动,
+        英国节点,
+        德国故转,
+        德国自动,
+        德国节点,
+        马来西亚故转,
+        马来西亚自动,
+        马来西亚节点,
+        土耳其故转,
+        土耳其自动,
+        土耳其节点,
+      ],
+  }
+# 手动选择区域组通用设置
+so: &so { type: select, hidden: false, include-all: true }
+# 自动选择区域组通用设置
+ao: &ao { type: url-test, hidden: true, include-all: true, tolerance: 50 }
+# 故障转移区域组通用设置
+fo: &fo { type: fallback, hidden: true }
 
-# 嗅探域名设置
-sniffer:
-  # 域名嗅探开关
-  enable: true
-  # 对 redir-host 类型识别的流量进行强制嗅探
-  # 如：Tun、Redir 和 TProxy 并且 DNS 为 redir-host 的皆属于此类
-  force-dns-mapping: true
-  # 对所有未获取到域名的流量进行强制嗅探
-  parse-pure-ip: true
-  # 是否使用嗅探结果作为实际访问，默认 true
-  # 全局配置，优先级低于 sniffer.sniff 实际配置
-  override-destination: true
-  sniff:
-    # TLS 和 QUIC 如果不设置，默认嗅探 443 端口
-    QUIC:
-      ports: [443, 8443]
-    TLS:
-      ports: [443, 8443]
-    # HTTP 默认嗅探 80 端口
-    HTTP:
-      ports: [80, 8080-8880]
-      # 可覆盖 sniffer.override-destination
-      override-destination: true
-  # 强制进行嗅探的域名
-  force-domain:
-    - +.v2ex.com
-    - +.netflix.com
-    - +.nflxvideo.net
-    - +.amazonaws.com
-    - +.media.dssott.com
-  # 需要跳过的源 IP 嗅探地址
-  # skip-src-address:
-  #   - 192.168.0.3/32
-  # 需要跳过的目标 IP 嗅探地址
-  # skip-dst-address:
-  #   - 192.168.0.3/32
-  # 需要跳过嗅探的域名
-  skip-domain:
-    - Mijia Cloud
-    - +.apple.com
-    - dlg.io.mi.com
-    - +.oray.com
-    - +.sunlogin.net
-    - +.push.apple.com
+# 策略组
+proxy-groups:
+  - {
+      name: 国外学术,
+      <<: *names,
+      icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Scholar.png,
+    }
+  - {
+      name: 即时通讯,
+      <<: *names,
+      icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Telegram.png,
+    }
+  - {
+      name: 社交媒体,
+      <<: *names,
+      icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Twitter.png,
+    }
+  - {
+      name: ChatGPT,
+      <<: *names,
+      icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/ChatGPT.png,
+    }
+  - {
+      name: Copilot,
+      <<: *names,
+      icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Microsoft_Copilot.png,
+    }
+  - {
+      name: 国外AI,
+      <<: *names,
+      icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/AI.png,
+    }
+  - {
+      name: GitHub,
+      <<: *names,
+      icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/GitHub.png,
+    }
+  - {
+      name: 测速工具,
+      <<: *names,
+      icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/SpeedTest.png,
+    }
+  - {
+      name: YouTube,
+      <<: *names,
+      icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/YouTube.png,
+    }
+  - {
+      name: AppleTV,
+      <<: *names,
+      icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Apple_TV.png,
+    }
+  - {
+      name: 苹果服务,
+      <<: *names,
+      icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Apple_rainbow.png,
+    }
+  - {
+      name: 微软服务,
+      <<: *names,
+      icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Microsoft.png,
+    }
+  - {
+      name: 谷歌FCM,
+      <<: *names,
+      icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/FCM_Firebase_Cloud_Messaging.png,
+    }
+  - {
+      name: 谷歌服务,
+      <<: *names,
+      icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Google.png,
+    }
+  - {
+      name: TikTok,
+      <<: *names,
+      icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/TikTok.png,
+    }
+  - {
+      name: NETFLIX,
+      <<: *names,
+      icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Netflix.png,
+    }
+  - {
+      name: Disney,
+      <<: *names,
+      icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Disney.png,
+    }
+  - {
+      name: HBO,
+      <<: *names,
+      icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/HBO_MAX.png,
+    }
+  - {
+      name: PrimeVideo,
+      <<: *names,
+      icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Prime.png,
+    }
+  - {
+      name: Emby,
+      <<: *names,
+      icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Emby.png,
+    }
+  - {
+      name: Spotify,
+      <<: *names,
+      icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Spotify.png,
+    }
+  - {
+      name: 巴哈姆特,
+      <<: *names,
+      icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Bahamut.png,
+    }
+  - {
+      name: 哔哩哔哩海外版,
+      <<: *names,
+      icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/bilibili.png,
+    }
+  - {
+      name: Pixiv,
+      <<: *names,
+      icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Pixiv.png,
+    }
+  - {
+      name: Hulu,
+      <<: *names,
+      icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Hulu.png,
+    }
+  - {
+      name: Steam,
+      <<: *names,
+      icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Steam.png,
+    }
+  - {
+      name: 游戏平台,
+      <<: *names,
+      icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Game.png,
+    }
+  - {
+      name: 国外娱乐,
+      <<: *names,
+      icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Stream.png,
+    }
+  - {
+      name: 国外电商,
+      <<: *names,
+      icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Amazon.png,
+    }
+  - {
+      name: GFW,
+      <<: *names,
+      icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/GFW.png,
+    }
+  - {
+      name: 漏网之鱼,
+      <<: *names,
+      icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Fish.png,
+    }
+  - {
+      name: 默认代理,
+      type: select,
+      hidden: false,
+      proxies:
+        [
+          自动选择,
+          全球直连,
+          全部节点,
+          香港故转,
+          香港自动,
+          香港节点,
+          台湾省故转,
+          台湾省自动,
+          台湾省节点,
+          新加坡故转,
+          新加坡自动,
+          新加坡节点,
+          日本故转,
+          日本自动,
+          日本节点,
+          韩国故转,
+          韩国自动,
+          韩国节点,
+          美国故转,
+          美国自动,
+          美国节点,
+          澳大利亚故转,
+          澳大利亚自动,
+          澳大利亚节点,
+          英国故转,
+          英国自动,
+          英国节点,
+          德国故转,
+          德国自动,
+          德国节点,
+          马来西亚故转,
+          马来西亚自动,
+          马来西亚节点,
+          土耳其故转,
+          土耳其自动,
+          土耳其节点,
+        ],
+      icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Flight.png,
+    }
+  - {
+      name: 自动选择,
+      <<: *ao,
+      icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Fish.png,
+    }
+  - {
+      name: "全球直连",
+      type: select,
+      proxies: [DIRECT],
+      hidden: true,
+      icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/DIRECT.png,
+    }
+  - {
+      name: "全部节点",
+      <<: *so,
+      icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Network_2.png,
+    }
+  - {
+      name: "香港故转",
+      <<: *fo,
+      proxies: [香港节点, 香港自动],
+      icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Hong_Kong.png,
+    }
+  - {
+      name: "香港节点",
+      <<: *so,
+      filter: "(?i)香港|🇭🇰|hk|hongkong|hong kong",
+      icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Hong_Kong.png,
+    }
+  - {
+      name: "香港自动",
+      <<: *ao,
+      filter: "(?i)香港|🇭🇰|hk|hongkong|hong kong",
+      icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Hong_Kong.png,
+    }
+  - {
+      name: "台湾省故转",
+      <<: *fo,
+      proxies: [台湾省节点, 台湾省自动],
+      icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Taiwan_Province.png,
+    }
+  - {
+      name: "台湾省节点",
+      <<: *so,
+      filter: "(?i)台湾|🇹🇼|tw|taiwan|tai wan",
+      icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Taiwan_Province.png,
+    }
+  - {
+      name: "台湾省自动",
+      <<: *ao,
+      filter: "(?i)台湾|🇹🇼|tw|taiwan|tai wan",
+      icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Taiwan_Province.png,
+    }
+  - {
+      name: "新加坡故转",
+      <<: *fo,
+      proxies: [新加坡节点, 新加坡自动],
+      icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Singapore.png,
+    }
+  - {
+      name: "新加坡节点",
+      <<: *so,
+      filter: "(?i)新加坡|狮城|🇸🇬|sg|singapore",
+      icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Singapore.png,
+    }
+  - {
+      name: "新加坡自动",
+      <<: *ao,
+      filter: "(?i)新加坡|狮城|🇸🇬|sg|singapore",
+      icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Singapore.png,
+    }
+  - {
+      name: "日本故转",
+      <<: *fo,
+      proxies: [日本节点, 日本自动],
+      icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Japan.png,
+    }
+  - {
+      name: "日本节点",
+      <<: *so,
+      filter: "(?i)日本|东京|大阪|京都|名古屋|神户|横滨|札幌|仙台|福冈|广岛|🇯🇵|jp|japan",
+      icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Japan.png,
+    }
+  - {
+      name: "日本自动",
+      <<: *ao,
+      filter: "(?i)日本|东京|大阪|京都|名古屋|神户|横滨|札幌|仙台|福冈|广岛|🇯🇵|jp|japan",
+      icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Japan.png,
+    }
+  - {
+      name: "韩国故转",
+      <<: *fo,
+      proxies: [韩国节点, 韩国自动],
+      icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/South_Korea.png,
+    }
+  - {
+      name: "韩国节点",
+      <<: *so,
+      filter: "(?i)韩国|釜山|大邱|仁川|光州|大田|蔚山|🇰🇷|kr|korea",
+      icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/South_Korea.png,
+    }
+  - {
+      name: "韩国自动",
+      <<: *ao,
+      filter: "(?i)韩国|釜山|大邱|仁川|光州|大田|蔚山|🇰🇷|kr|korea",
+      icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/South_Korea.png,
+    }
+  - {
+      name: "美国故转",
+      <<: *fo,
+      proxies: [美国节点, 美国自动],
+      icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/USA.png,
+    }
+  - {
+      name: "美国节点",
+      <<: *so,
+      filter: "(?i)美国|洛杉矶|纽约|华盛顿|阿拉斯加|亚利桑那|科罗拉多|夏威夷|爱达荷|新墨西哥|蒙大拿|新泽西|俄亥俄|明尼苏达|密西西比|北卡罗来纳|南卡罗来纳|怀俄明|威斯康星|弗吉尼亚|西弗吉尼亚|田纳西|宾夕法尼亚|俄勒冈|德克萨斯|佐治亚|密歇根|🇺🇸|us|united state|america",
+      icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/USA.png,
+    }
+  - {
+      name: "美国自动",
+      <<: *ao,
+      filter: "(?i)美国|洛杉矶|纽约|华盛顿|阿拉斯加|亚利桑那|科罗拉多|夏威夷|爱达荷|新墨西哥|蒙大拿|新泽西|俄亥俄|明尼苏达|密西西比|北卡罗来纳|南卡罗来纳|怀俄明|威斯康星|弗吉尼亚|西弗吉尼亚|田纳西|宾夕法尼亚|俄勒冈|德克萨斯|佐治亚|密歇根|🇺🇸|us|united state|america",
+      icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/USA.png,
+    }
+  - {
+      name: "澳大利亚故转",
+      <<: *fo,
+      proxies: [澳大利亚节点, 澳大利亚自动],
+      icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Australia.png,
+    }
+  - {
+      name: "澳大利亚节点",
+      <<: *so,
+      filter: "(?i)澳大利亚|悉尼|墨尔本|布里斯班|珀斯|阿德莱德|坎培拉|达尔文|荷伯特|🇦🇺|au|Australia",
+      icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Australia.png,
+    }
+  - {
+      name: "澳大利亚自动",
+      <<: *ao,
+      filter: "(?i)澳大利亚|悉尼|墨尔本|布里斯班|珀斯|阿德莱德|坎培拉|达尔文|荷伯特|🇦🇺|au|Australia",
+      icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Australia.png,
+    }
+  - {
+      name: "英国故转",
+      <<: *fo,
+      proxies: [英国节点, 英国自动],
+      icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/UK.png,
+    }
+  - {
+      name: "英国节点",
+      <<: *so,
+      filter: "(?i)英国|伦敦|伯明翰|利兹|利物浦|格拉斯哥|谢菲尔德|曼彻斯特|爱丁堡|🇬🇧|uk|united kingdom|great britain",
+      icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/UK.png,
+    }
+  - {
+      name: "英国自动",
+      <<: *ao,
+      filter: "(?i)英国|伦敦|伯明翰|利兹|利物浦|格拉斯哥|谢菲尔德|曼彻斯特|爱丁堡|🇬🇧|uk|united kingdom|great britain",
+      icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/UK.png,
+    }
+  - {
+      name: "德国故转",
+      <<: *fo,
+      proxies: [德国节点, 德国自动],
+      icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Germany.png,
+    }
+  - {
+      name: "德国节点",
+      <<: *so,
+      filter: "(?i)德国|柏林|汉堡|慕尼黑|科隆|法兰克福|杜塞尔多夫|🇩🇪|de|germany",
+      icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Germany.png,
+    }
+  - {
+      name: "德国自动",
+      <<: *ao,
+      filter: "(?i)德国|柏林|汉堡|慕尼黑|科隆|法兰克福|杜塞尔多夫|🇩🇪|de|germany",
+      icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Germany.png,
+    }
+  - {
+      name: "马来西亚故转",
+      <<: *fo,
+      proxies: [马来西亚节点, 马来西亚自动],
+      icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Malaysia.png,
+    }
+  - {
+      name: "马来西亚节点",
+      <<: *so,
+      filter: "(?i)马来西亚|吉隆坡|古晋|亚庇|莎亚南|马六甲市|亚罗士打|美里|关丹|🇲🇾|my|malaysia",
+      icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Malaysia.png,
+    }
+  - {
+      name: "马来西亚自动",
+      <<: *ao,
+      filter: "(?i)马来西亚|吉隆坡|古晋|亚庇|莎亚南|马六甲市|亚罗士打|美里|关丹|🇲🇾|my|malaysia",
+      icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Malaysia.png,
+    }
+  - {
+      name: "土耳其故转",
+      <<: *fo,
+      proxies: [土耳其节点, 土耳其自动],
+      icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Turkey.png,
+    }
+  - {
+      name: "土耳其节点",
+      <<: *so,
+      filter: "(?i)土耳其|阿达纳|阿菲永|阿马西亚|阿纳穆尔|安卡拉|安塔利亚|艾登|巴勒克埃西尔|🇹🇷|tk|turkey",
+      icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Turkey.png,
+    }
+  - {
+      name: "土耳其自动",
+      <<: *ao,
+      filter: "(?i)土耳其|阿达纳|阿菲永|阿马西亚|阿纳穆尔|安卡拉|安塔利亚|艾登|巴勒克埃西尔|🇹🇷|tk|turkey",
+      icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Turkey.png,
+    }
 
-
-# Tun 配置
-# tun:
-  # Tun 总开关
-  # enable: true
-  # Tun 模式堆栈，可选值包括 system/gvisor/mixed，如无使用问题，建议使用 mixed栈，默认 gvisor
-  # stack: mixed
-  # dns 劫持，将匹配到的连接导入内部 dns 模块，不书写协议则为 udp://
-  # dns-hijack:
-    # - any:53
-    # - tcp://any:53
-  # 自动设置全局路由，可以自动将全局流量路由进入 tun 网卡
-  # auto-route: true
-  # 仅支持 Linux，自动配置 iptables/nftables 以重定向 TCP 连接，需要auto-route已启用
-  # auto-redirect: true
-  # 自动选择流量出口接口，多出口网卡同时连接的设备建议手动指定出口网卡
-  # auto-detect-interface: true
-
-
-# 自定义规则源
+# 规则源
 rule-providers:
   Custom_Direct:
     type: http
@@ -974,7 +883,6 @@ rule-providers:
     behavior: classical
     format: text
     size-limit: 0
-
 
 # 规则集
 rules:
